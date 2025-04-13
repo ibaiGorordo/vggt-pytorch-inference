@@ -1,3 +1,4 @@
+import os
 from dataclasses import dataclass
 
 import numpy
@@ -35,7 +36,11 @@ class VGGTInference(nn.Module):
         self.device = device
 
         # bfloat16 is supported on Ampere GPUs (Compute Capability 8.0+)
-        self.dtype = torch.bfloat16 if torch.cuda.get_device_capability()[0] >= 8 else torch.float16
+        self.dtype = torch.float16
+        if self.device.type == 'cuda':
+            self.dtype = torch.bfloat16 if torch.cuda.get_device_capability()[0] >= 8 else torch.float16
+        elif self.device.type == 'mps':
+            os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
 
         # Initialize the model and load the pretrained weights.
         # This will automatically download the model weights the first time it's run, which may take a while.
