@@ -1,6 +1,8 @@
 import os
 from dataclasses import dataclass
 
+os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
+
 import numpy
 import torch
 import torch.nn as nn
@@ -39,8 +41,6 @@ class VGGTInference(nn.Module):
         self.dtype = torch.float16
         if self.device.type == 'cuda':
             self.dtype = torch.bfloat16 if torch.cuda.get_device_capability()[0] >= 8 else torch.float16
-        elif self.device.type == 'mps':
-            os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
 
         # Initialize the model and load the pretrained weights.
         # This will automatically download the model weights the first time it's run, which may take a while.
