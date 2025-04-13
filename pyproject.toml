@@ -1,0 +1,44 @@
+[project]
+name = "vggt-pytorch-inference"
+version = "0.1.0"
+description = "Repository for running the VGGT model in PyTorch"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "opencv-python>=4.11.0",
+    "torch>=2.5.1",
+    "torchvision>=0.20.1",
+    "rerun-sdk>=0.22.1",
+    "vggt @ git+https://github.com/facebookresearch/vggt.git@7260ede3ff25d3dd29cc7dc3cbe6780a504dc848",
+    "dedodev2-pytorch-inference @ git+https://github.com/ibaiGorordo/dedodev2-pytorch-inference.git@9c31692dc25c56b7872349dbbfab3e4c0038df0e",
+]
+
+[project.optional-dependencies]
+demo = [
+    "opencv-python",
+    "scipy",
+    "onnxruntime",
+    "requests",
+]
+
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu121", marker = "sys_platform != 'darwin'" },
+]
+torchvision = [
+    { index = "pytorch-cu121", marker = "sys_platform != 'darwin'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu121"
+url = "https://download.pytorch.org/whl/cu121"
+explicit = true
+
+# Using setuptools as the build backend
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["vggt_inference"]
