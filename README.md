@@ -1,4 +1,4 @@
-# VGGT Inference Example (WIP)
+# VGGT Pytorch Inference (WIP)
 Repository for running the VGGT model in PyTorch
 ![vggt](https://github.com/user-attachments/assets/ee3b24be-b97c-45fc-9361-ee686d447014)
 
