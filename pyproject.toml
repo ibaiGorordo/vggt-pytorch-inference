@@ -5,7 +5,7 @@ description = "Repository for running the VGGT model in PyTorch"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "opencv-python>=4.11.0",
+    "opencv-python>=4.7.0",
     "torch>=2.5.1",
     "torchvision>=0.20.1",
     "rerun-sdk>=0.22.1",
