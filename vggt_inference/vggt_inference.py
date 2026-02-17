@@ -53,7 +53,7 @@ class VGGTInference(nn.Module):
         # Load and preprocess example images (replace with your own image paths)
         images = preprocess_images(input_images).to(self.device)
 
-        with torch.amp.autocast('cuda', dtype=self.dtype):
+        with torch.amp.autocast(self.device.type, dtype=self.dtype):
             images = images[None]  # add batch dimension
             aggregated_tokens_list, ps_idx = self.model.aggregator(images)
 
