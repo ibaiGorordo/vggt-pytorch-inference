@@ -9,6 +9,8 @@ Repository for running the VGGT model in PyTorch
 
 ## Installation
 
+> **Note:** This project depends on the official [facebookresearch/vggt](https://github.com/facebookresearch/vggt) package, which is automatically installed from GitHub during setup. Make sure you have **git** installed on your system before running the installation commands below.
+
 ### Option1: pip installation
 ```bash
 git clone https://github.com/ibaiGorordo/vggt-pytorch-inference.git
@@ -25,6 +27,14 @@ uv sync
 ```
 
 - Additionally, to activate the uv environment: `source .venv/bin/activate` in macOS and Linux or `.venv\Scripts\activate` in Windows
+
+### Troubleshooting
+
+If you encounter `ModuleNotFoundError: No module named 'vggt.models'`, the `vggt` dependency was not installed correctly. Try installing it manually:
+
+```bash
+pip install git+https://github.com/facebookresearch/vggt.git
+```
 
 ## Examples:
 
